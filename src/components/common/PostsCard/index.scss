@@ -28,8 +28,23 @@ img {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    position: relative;
   
 } 
+.edit-delete-btns {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        margin-bottom: 20rem;
+        font-size: 2.2rem;
+        cursor: pointer;
+        .edit-btn, .delete-btn {
+        padding: 5px;
+        &:hover {
+            color: #007bff;
+            }
+        } 
+}
 
 .user-details {
     display: flex;

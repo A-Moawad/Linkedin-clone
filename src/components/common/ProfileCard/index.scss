@@ -75,17 +75,6 @@
             font-weight: 600;
         }
     }
-    .edit-delete-btns {
-      margin-bottom: 20rem;
-          font-size: 2rem;
-          cursor: pointer;
-          .edit-btn, .delete-btn {
-            padding: 5px;
-            &:hover {
-                color: #007bff;
-            }
-          } 
-    }
 }
 
 .all-posts {

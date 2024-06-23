@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import "./index.scss";
 import userIcon from "../../../assets/userIcon.jpg";
 import { useNavigate } from "react-router-dom";
@@ -11,12 +11,13 @@ import {
   postComment,
   getComments,
   getAllUsers,
+  deletePost,
 } from "../../../api/FireStoreAPI";
-import { AiTwotoneLike } from "react-icons/ai"; // empty like icon
-import { BiSolidLike } from "react-icons/bi"; // full like icon
+import { AiTwotoneLike } from "react-icons/ai";
+import { BiSolidLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa6";
-// import { getPostImage } from "../../../api/imageUploadAPI";
-
+import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
+import EditModal from "../EditModal";
 function PostsCard({ post, id }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -28,30 +29,29 @@ function PostsCard({ post, id }) {
   const [allUsers, setAllUsers] = useState([]);
   const navigate = useNavigate();
 
-  console.log(comments);
-  console.log(currentUser);
   const commentsCount = comments.length;
 
-  const toggleReadMore = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const toggleReadMore = useCallback(() => {
+    setIsExpanded((prev) => !prev);
+  }, []);
 
-  const handleLike = () => {
+  const handleLike = useCallback(() => {
     likePost(currentUser?.id, post.postID, isLiked);
-    setIsLiked(!isLiked);
-    setLikesCount(isLiked ? likesCount - 1 : likesCount + 1);
-  };
-
-  useMemo(() => {
-    if (currentUser.id) {
-      getLikesByUser(currentUser.id, post.postID, setIsLiked, setLikesCount);
-    }
-  }, [currentUser.id, post.postID]);
+    setIsLiked((prev) => !prev);
+    setLikesCount((prev) => (isLiked ? prev - 1 : prev + 1));
+  }, [currentUser?.id, post.postID, isLiked]);
 
   useEffect(() => {
     getCurrentUser(setCurrentUser);
     getAllUsers(setAllUsers);
   }, []);
+
+  useEffect(() => {
+    if (currentUser.id) {
+      getLikesByUser(currentUser.id, post.postID, setIsLiked, setLikesCount);
+    }
+  }, [currentUser.id, post.postID]);
+
   useEffect(() => {
     const fetchComments = async () => {
       await getComments(post.postID, setComments);
@@ -60,20 +60,20 @@ function PostsCard({ post, id }) {
     fetchComments();
   }, [post.postID]);
 
-  const handlePostImage = () => {
+  const handlePostImage = useCallback(() => {
     const user = allUsers.find((user) => user.id === post.userID);
     return user ? user.imageLink : userIcon;
-  };
+  }, [allUsers, post.userID]);
 
-  const handleCommentBtn = () => {
-    setIsComment(!isComment);
-  };
+  const handleCommentBtn = useCallback(() => {
+    setIsComment((prev) => !prev);
+  }, []);
 
-  const getComment = (e) => {
+  const getComment = useCallback((e) => {
     setComment(e.target.value);
-  };
+  }, []);
 
-  const addComment = () => {
+  const addComment = useCallback(() => {
     if (!comment.trim()) return;
     postComment(
       post.postID,
@@ -82,9 +82,13 @@ function PostsCard({ post, id }) {
       currentUser?.name
     );
     setComment("");
+  }, [comment, currentUser?.name, post.postID]);
 
-    console.log("Comment posted:", comment);
-  };
+  const handleDeletePost = useCallback(() => {
+    deletePost(post.id);
+  }, [post.postID]);
+
+
 
   return (
     <div className="post-card" key={id}>
@@ -102,6 +106,10 @@ function PostsCard({ post, id }) {
             {post.userName}
           </p>
           <p className="timestamp">{post.postTime}</p>
+        </div>
+        <div className="edit-delete-btns">
+          <EditModal post={post}/>
+          <MdDeleteOutline className="delete-btn" onClick={handleDeletePost} />
         </div>
       </div>
       <div className="post-content">

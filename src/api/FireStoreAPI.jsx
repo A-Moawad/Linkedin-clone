@@ -177,11 +177,14 @@ export const updatePost = (postId, post) => {
     console.log(err);
   }
 };
-export const deletePost = (postId) => {
+
+export const deletePost = async (postId) => {
   try {
-    deleteDoc(doc(postsRef, postId));
+    await deleteDoc(doc(postsRef, postId));
+    console.log(postId);
     toast.success("Post deleted successfully");
   } catch (err) {
-    console.log(err);
+    console.error("Error deleting post:", err);
+    toast.error("Failed to delete post");
   }
 };

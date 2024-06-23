@@ -3,6 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { editProfile } from "../../../api/FireStoreAPI";
 import "./index.scss";
 
+import { startUpload } from "../../../api/imageUploadAPI";
 
 export default function ProfileEdit({ onEdit, currentUser }) {
   const [editInputs, setEditInputs] = useState(currentUser);
