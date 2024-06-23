@@ -1,0 +1,204 @@
+$main-border: 20px;
+
+.post-card {
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border-radius: $main-border;
+    max-width: 100%;
+    width: 90%;
+    min-height: 300px;
+    // height: 700px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    position: relative;
+
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-card-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  
+} 
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    color: rgb(0, 0, 9);
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+    cursor: pointer;
+}
+.post-card .username:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.post-card .timestamp {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 400;
+    line-height: 16px;
+    margin: 0;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-content {
+    display: inline;
+}
+
+.read-more-button {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+    display: inline;
+    margin-left: 5px;
+    /* Optional: Add some space between text and button */
+}
+
+.read-more-button:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.btns {
+  width: 90%;
+ border-top: 1px solid #ccc; 
+ padding: 10px;
+ display: flex;
+
+}
+
+.btn {
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    width: 50%;
+    flex-direction: row;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 10px;
+
+}
+.btn:hover {
+    background-color: #eee;
+}
+.like-btn {
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.9);
+  line-height: 28px;
+}
+
+.add-comment-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-comment {
+  width: 200px;
+  border-radius: 20px;
+  margin: 0 auto;
+  padding: 5px;
+  color: #fff;
+  font-weight: 600;
+  line-height: 20px;
+  font-size: 14px;
+  background-color:rgb(70, 79, 235);
+  cursor: pointer;
+}
+.add-comment:hover {
+    background-color:blue;
+}
+
+.comment-btn {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+    line-height: 28px;
+    font-size: 20px;
+}
+
+.comment-input {
+  width: 90%;
+  border-radius: 20px;
+  margin: 15px auto;
+  
+}
+.btn p {
+    display: inline;
+    margin-left: 10px;
+}
+
+.blue {
+    color:rgb(62, 79, 237);
+}
+.comment-card-container {
+  display: flex;
+}
+.comment-card {
+    background-color: #ccc;
+    margin: 10px auto;
+    width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    // justify-content: space-between;
+    flex-direction: column;
+}
+.comment-info {
+  display: flex;
+  justify-content: space-between;
+}
+.comment-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+}
+.comment-name:hover {
+    color: rgb(10, 102, 194);
+    cursor: pointer;
+}
+.comment-card .timestamp {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 16px;
+}

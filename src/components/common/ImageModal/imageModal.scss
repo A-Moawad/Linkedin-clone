@@ -1,0 +1,17 @@
+.upload-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70px;
+    flex-direction: column;
+    label {
+        border: 1px #333 solid;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+}
+
+.progress-bar {
+    margin-top: 20px;
+    text-align: center;
+}
