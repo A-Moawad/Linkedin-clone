@@ -131,7 +131,6 @@ export const postComment = async (postId, comment, timeStamp, name) => {
   }
 };
 
-
 export const getLikesByUser = (userId, postId, setIsLiked, setLikesCount) => {
   try {
     let likeQuery = query(likeRef, where("postId", "==", postId));
@@ -150,8 +149,6 @@ export const getLikesByUser = (userId, postId, setIsLiked, setLikesCount) => {
   }
 };
 
-
-
 export const getComments = (postId, setComments) => {
   try {
     let singlePostQuery = query(commentsRef, where("postId", "==", postId));
@@ -166,6 +163,24 @@ export const getComments = (postId, setComments) => {
 
       setComments(comments);
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const updatePost = (postId, post) => {
+  try {
+    updateDoc(doc(postsRef, postId), {
+      post,
+    });
+    toast.success("Post updated successfully");
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const deletePost = (postId) => {
+  try {
+    deleteDoc(doc(postsRef, postId));
+    toast.success("Post deleted successfully");
   } catch (err) {
     console.log(err);
   }

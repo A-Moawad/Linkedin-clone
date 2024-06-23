@@ -6,12 +6,18 @@ import userIcon from "../../../assets/userIcon.jpg";
 import PostsCard from "../PostsCard";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 import {getUniqueID} from "../../../helpers/getUniqueId";
+import { getPostImage } from "../../../api/imageUploadAPI";
+
+
+
+
 function PostStatus({currentUser}) {
   const [showModal, setShowModal] = useState(false);
   const [post, setPost] = useState("");
+  const [currentPost, setCurrentPost] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
-  // const [postImage, setPostImage] = useState("");
+  const [postImage, setPostImage] = useState("");
   const userEmail = localStorage.getItem("userEmail"); // Ensure this is uncommented and used
 
   const sendPost = async () => {
@@ -22,7 +28,7 @@ function PostStatus({currentUser}) {
       userName: currentUser.name,
       postID: getUniqueID(),
       userID:  currentUser.id,
-      // post: postImage,
+      postImage: postImage,
 
     };
     try {
@@ -64,6 +70,12 @@ function PostStatus({currentUser}) {
         setPost={setPost}
         sendPost={sendPost}
         isEdit={isEdit}
+        postImage={postImage}
+        setPostImage={setPostImage}
+        updatePost={updatePost}
+        getPostImage={getPostImage}
+        currentPost={currentPost}
+        setCurrentPost={setCurrentPost}
       />
       <div className="all-posts">
         {allPosts?.map((post) => (

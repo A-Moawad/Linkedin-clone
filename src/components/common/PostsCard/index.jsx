@@ -10,11 +10,12 @@ import {
   getCurrentUser,
   postComment,
   getComments,
+  getAllUsers,
 } from "../../../api/FireStoreAPI";
 import { AiTwotoneLike } from "react-icons/ai"; // empty like icon
 import { BiSolidLike } from "react-icons/bi"; // full like icon
 import { FaRegCommentDots } from "react-icons/fa6";
-// import { singlePostImage } from "../../../api/imageUploadAPI";
+// import { getPostImage } from "../../../api/imageUploadAPI";
 
 function PostsCard({ post, id }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -24,6 +25,7 @@ function PostsCard({ post, id }) {
   const [isComment, setIsComment] = useState(false);
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [allUsers, setAllUsers] = useState([]);
   const navigate = useNavigate();
 
   console.log(comments);
@@ -48,6 +50,7 @@ function PostsCard({ post, id }) {
 
   useEffect(() => {
     getCurrentUser(setCurrentUser);
+    getAllUsers(setAllUsers);
   }, []);
   useEffect(() => {
     const fetchComments = async () => {
@@ -56,6 +59,11 @@ function PostsCard({ post, id }) {
 
     fetchComments();
   }, [post.postID]);
+
+  const handlePostImage = () => {
+    const user = allUsers.find((user) => user.id === post.userID);
+    return user ? user.imageLink : userIcon;
+  };
 
   const handleCommentBtn = () => {
     setIsComment(!isComment);
@@ -81,7 +89,7 @@ function PostsCard({ post, id }) {
   return (
     <div className="post-card" key={id}>
       <div className="post-card-info">
-        <img src={userIcon} alt="user" className="user-icon" />
+        <img src={handlePostImage()} alt="user" className="user-icon" />
         <div className="user-details">
           <p
             className="username"
