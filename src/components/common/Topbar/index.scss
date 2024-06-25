@@ -23,6 +23,20 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
+    // .icon-container {
+    //   width: 100px;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    // }
+    @media (min-width: 768px) {
+    .icon-container {
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }
 
 .icon {

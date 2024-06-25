@@ -17,6 +17,7 @@ const postsRef = collection(firestore, "posts");
 const userRef = collection(firestore, "users");
 const likeRef = collection(firestore, "likes");
 const commentsRef = collection(firestore, "comments");
+const connectionsRef = collection(firestore, "connections");
 
 export const postStatus = async (object) => {
   try {
@@ -167,6 +168,7 @@ export const getComments = (postId, setComments) => {
     console.log(err);
   }
 };
+
 export const updatePost = (postId, post) => {
   try {
     updateDoc(doc(postsRef, postId), {
@@ -188,3 +190,41 @@ export const deletePost = async (postId) => {
     toast.error("Failed to delete post");
   }
 };
+
+export const addConnection = async (user1Id, user2Id) => {
+  const connectionId = `${user1Id}_${user2Id}`;
+  const docToConnection = doc(connectionsRef, connectionId);
+  try {
+    await setDoc(docToConnection, {
+      user1: user1Id,
+      user2: user2Id,
+    });
+    toast.success("connection added successfully");
+  } catch (e) {
+    console.log(e);
+    toast.error("Failed to add connection");
+  }
+};
+
+export const getConnections = (
+  user1,
+  user2,
+  setIsConnected
+) => {
+  try {
+    const q = query(connectionsRef, where("user2", "==", user2));
+    onSnapshot(q, (snapshot) => {
+      const connections = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+      }));
+      const isConnected = connections.some((connection) => {
+        return connection.user1 === user1;
+      });
+      setIsConnected(isConnected);
+    });
+  } catch (e) {
+    console.log(e);
+    toast.error("Failed to add connection");
+  }
+};
+

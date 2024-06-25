@@ -1,25 +1,28 @@
 import "./index.scss";
 import { useState, useEffect } from "react";
-import { postStatus, getStatus } from "../../../api/FireStoreAPI";
+import {
+  postStatus,
+  getStatus,
+  getConnections,
+} from "../../../api/FireStoreAPI";
 import ModalComponent from "../Modal/index";
 import userIcon from "../../../assets/userIcon.jpg";
 import PostsCard from "../PostsCard";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
-import {getUniqueID} from "../../../helpers/getUniqueId";
+import { getUniqueID } from "../../../helpers/getUniqueId";
 import { getPostImage } from "../../../api/imageUploadAPI";
 
-
-
-
-function PostStatus({currentUser}) {
+function PostStatus({ currentUser }) {
   const [showModal, setShowModal] = useState(false);
   const [post, setPost] = useState("");
   const [currentPost, setCurrentPost] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
   const [postImage, setPostImage] = useState("");
+
   const userEmail = localStorage.getItem("userEmail"); // Ensure this is uncommented and used
 
+  
   const sendPost = async () => {
     const object = {
       post: post,
@@ -27,9 +30,8 @@ function PostStatus({currentUser}) {
       postTime: getCurrentTimeStamp("LLL"),
       userName: currentUser.name,
       postID: getUniqueID(),
-      userID:  currentUser.id,
-      postImage: postImage,
-
+      userID: currentUser.id,
+      // postImage: postImage,
     };
     try {
       await postStatus(object);
@@ -44,6 +46,8 @@ function PostStatus({currentUser}) {
   useEffect(() => {
     getStatus(setAllPosts);
   }, []);
+
+  
 
   const updatePost = () => {
     setIsEdit(false);

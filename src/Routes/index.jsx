@@ -3,6 +3,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import HomeLayout from "../layouts/HomeLayout";
 import ProfileLayout from "../layouts/ProfileLayout";
+import ConnectionsLayout from "../layouts/ConnectionsLayout";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -19,5 +20,9 @@ export const router = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfileLayout/>
-  }
+  },
+  {
+    path: "/connections",
+    element: <ConnectionsLayout/>
+  },
 ]);

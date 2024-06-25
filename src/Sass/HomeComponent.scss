@@ -1,0 +1,28 @@
+.home-profile-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 150px;
+    margin: 20px auto;
+    border-radius: 20px;
+    background-color: #fff;
+    max-width: 700px;
+    img {
+        width: 100px;
+        height: 100px;
+    }
+    .username {
+        color:rgba(0, 0, 0, 0.9);
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 16px;
+    }
+    .headline {
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+}
