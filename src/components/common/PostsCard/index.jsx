@@ -97,7 +97,7 @@ function PostsCard({ post, id }) {
 
   return (
     <>
-      {(isConnected || post.userID === currentUser.id) ? (
+      {isConnected || post.userID === currentUser.id ? (
         <div className="post-card" key={id}>
           <div className="post-card-info">
             <img src={handlePostImage()} alt="user" className="user-icon" />
@@ -114,13 +114,15 @@ function PostsCard({ post, id }) {
               </p>
               <p className="timestamp">{post.postTime}</p>
             </div>
-            <div className="edit-delete-btns">
-              <EditModal post={post} />
-              <MdDeleteOutline
-                className="delete-btn"
-                onClick={handleDeletePost}
-              />
-            </div>
+            {/* {currentUser.email === userEmail && (
+              <div className="edit-delete-btns">
+                <EditModal post={post} />
+                <MdDeleteOutline
+                  className="delete-btn"
+                  onClick={handleDeletePost}
+                />
+              </div>
+            )} */}
           </div>
           <div className="post-content">
             <p>

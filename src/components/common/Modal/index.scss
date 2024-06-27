@@ -7,33 +7,38 @@
     font-family: system-ui;
     width: 100%;
     resize: none;
+    position: relative;
 }
 
-.ql-container.ql-snow,
-.ql-toolbar.ql-snow {
-    border: none !important;
-}
+// .ql-container.ql-snow,
+// .ql-toolbar.ql-snow {
+//     border: none !important;
+// }
 
-.ql-container.ql-snow {
-    font-size: 20px;
-    font-family: system-ui;
-}
+// .ql-container.ql-snow {
+//     font-size: 20px;
+//     font-family: system-ui;
+// }
 
-.picture-icon {
+.picture.icon {
     color: #0073b1;
     cursor: pointer;
     position: absolute;
     bottom: 20px;
+    left: 20px;
+}
+.picture.icon:hover {
+    color: rgba(0, 0, 0, 0.9);
 }
 
-.preview-image {
-    width: 100%;
-    margin-top: 20px;
-}
+// .preview-image {
+//     width: 100%;
+//     margin-top: 20px;
+// }
 
-.posts-body {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
+// .posts-body {
+//     display: flex;
+//     justify-content: center;
+//     flex-direction: column;
+//     align-items: center;
+// }

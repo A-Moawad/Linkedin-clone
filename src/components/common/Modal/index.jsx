@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Button, Modal, Progress } from "antd";
-import { AiOutlinePicture } from "react-icons/ai";
-import ReactQuill from "react-quill";
+import React from "react";
+import { Button, Modal } from "antd";
+import { IoMdPhotos } from "react-icons/io";
+
 import "./index.scss";
 
 const ModalComponent = ({
@@ -12,13 +12,16 @@ const ModalComponent = ({
   sendPost,
   isEdit,
   updatePost,
-  // uploadPostImage,
-  // setPostImage,
-  // postImage,
-  // currentPost,
-  // setCurrentPost,
+  setPostPicture,
+  postPicture,
 }) => {
-  // const [progress, setProgress] = useState(0);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPostPicture(file);
+    }
+  };
+
   return (
     <>
       <Modal
@@ -26,16 +29,10 @@ const ModalComponent = ({
         centered
         open={modalOpen}
         onOk={() => {
-          // setStatus("");
           setModalOpen(false);
-          // setPostImage("");
-          // setCurrentPost({});
         }}
         onCancel={() => {
-          // setStatus("");
           setModalOpen(false);
-          // setPostImage("");
-          // setCurrentPost({});
         }}
         footer={[
           <Button
@@ -48,11 +45,21 @@ const ModalComponent = ({
           </Button>,
         ]}
       >
-        <input
+        <textarea
           className="modal-input"
           value={post}
           onChange={(e) => setPost(e.target.value)}
-          placeholder="What do you want to talk about?"/>
+          placeholder="What do you want to talk about?"
+        />
+        <input
+          type="file"
+          id="upload-picture"
+          onChange={handleFileChange}
+          style={{ display: "none" }}
+        />
+        <label htmlFor="upload-picture">
+          <IoMdPhotos className="picture icon" />
+        </label>
       </Modal>
     </>
   );

@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import linkedInLogo from "../../../assets/linkedinLogo.png"; // Ensure the correct path to the image
-import "./index.scss";
-import { useEffect, useMemo, useState } from "react";
 import userIcon from "../../../assets/userIcon.jpg";
-import { useMatch, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signOutAPI } from "../../../api/AuthAPI";
+import "./index.scss";
 import {
   AiOutlineHome,
   AiOutlineUserSwitch,
@@ -20,13 +20,32 @@ function Topbar() {
   const [users, setUsers] = useState([]);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  useMemo(() => {
-    getCurrentUser(setCurrentUser);
-  }, []);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
+    getCurrentUser(setCurrentUser);
     getAllUsers(setUsers);
-  });
+  }, []);
+
+  const handleSearch = () => {
+    if (searchInput !== "") {
+      let searched = users.filter((user) =>
+        user.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      setFilteredUsers(searched);
+    } else {
+      setFilteredUsers([]);
+    }
+  };
+
+  useEffect(() => {
+    let debounced = setTimeout(() => {
+      handleSearch();
+    }, 1000);
+
+    return () => clearTimeout(debounced);
+  }, [searchInput]);
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -48,11 +67,28 @@ function Topbar() {
 
   const handleSearchClick = () => {
     setIsSearchClicked(!isSearchClicked);
+    if (!isSearchClicked) {
+      setFilteredUsers([]);
+      setSearchInput("");
+    }
   };
+
+  const handleUserClick = (user) => {
+    navigate("/profile", {
+      state: {
+        id: user?.id,
+        email: user?.email,
+      },
+    });
+  };
+
+  const handleLogoClick = () => {
+    navigate("/home");
+  }
 
   return (
     <div className="topbar">
-      <img src={linkedInLogo} alt="LinkedIn Logo" className="logo" />
+      <img src={linkedInLogo} alt="LinkedIn Logo" className="logo" onClick={handleLogoClick}/>
       {!isSearchClicked ? (
         <div className="icons">
           <div className="icon-container">
@@ -69,7 +105,7 @@ function Topbar() {
           </div>
           <div className="icon-container">
             <AiOutlineUserSwitch
-              className="icon connections "
+              className="icon connections"
               onClick={() => navigate("/connections")}
             />
           </div>
@@ -81,7 +117,7 @@ function Topbar() {
           </div>
           <div className="user-container">
             <img
-              src={currentUser.imageLink}
+              src={currentUser.imageLink || userIcon}
               alt="user icon"
               className="icon user"
               onClick={toggleDropdown}
@@ -104,8 +140,28 @@ function Topbar() {
             className="icon search"
             onClick={handleSearchClick}
           />
-          <SearchInput />
+          <SearchInput
+            setSearchInput={setSearchInput}
+            setIsSearchClicked={setIsSearchClicked}
+          />
         </>
+      )}
+      {isSearchClicked && searchInput.length > 0 && (
+        <div className="filtered-users-container">
+          {filteredUsers.length === 0 ? (
+            <div className="error">No Results Found.</div>
+          ) : (
+            filteredUsers.map((user) => (
+              <div className="filtered-user" key={user.id}>
+                <img src={user.imageLink} alt="user image" />
+                <p className="username" onClick={() => handleUserClick(user)}>
+                  {user.name}
+                </p>
+                <p className="headline">{user.headline}</p>
+              </div>
+            ))
+          )}
+        </div>
       )}
     </div>
   );

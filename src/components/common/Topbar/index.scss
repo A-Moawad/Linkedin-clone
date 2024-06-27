@@ -5,12 +5,14 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
+    position: relative;
 }
 
 .logo {
     height: 40px;
     width: 40px;
     margin: 0 20px;
+    cursor: pointer;
 }
 
 @media (max-width: 767px) {
@@ -87,4 +89,38 @@
     &:hover {
         background-color: #f5f5f5;
     }
+}
+
+.filtered-users-container {
+  background-color: #fff;
+  position: absolute;
+  bottom: -180px;
+  left: 130px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 80%;
+  .filtered-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10PX;
+    // z-index: 1000;
+    img {
+        width: 40px;
+        height: 40px;
+    }
+    .usrename {
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.9);
+        line-height: 24px;
+        cursor: pointer;
+    }
+    .headline {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
 }
