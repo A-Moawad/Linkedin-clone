@@ -118,13 +118,15 @@ export const likePost = (userId, postId, liked) => {
   }
 };
 
-export const postComment = async (postId, comment, timeStamp, name) => {
+export const postComment = async (postId, comment, timeStamp, name, userEmail, userID) => {
   try {
     await addDoc(commentsRef, {
       postId,
       comment,
       timeStamp,
       name,
+      userEmail,
+      userID,
     });
     console.log("Comment added successfully");
   } catch (err) {

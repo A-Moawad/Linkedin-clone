@@ -57,6 +57,13 @@
     .right-info {
       margin: 0 auto;
     }
+    .edit-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2.2rem;
+      cursor: pointer;
+    }
         @media (max-width: 767px) {
             img {
                 width: 60px;

@@ -112,15 +112,18 @@ function ProfileCard({ currentUser, onEdit }) {
             )}
           </div>
           {profile?.email === userEmail && (
-            <div className="edit-delete-btns">
-              <MdOutlineEdit className="edit-btn" onClick={onEdit} />
-              <MdDeleteOutline className="delete-btn" />
-            </div>
+            <MdOutlineEdit className="edit-btn" onClick={onEdit} />
           )}
         </div>
         <div className="all-posts">
           {allStatus.length > 0 ? (
-            allStatus.map((posts) => <PostsCard key={posts.id} post={posts} />)
+            allStatus.map((posts) => (
+              <PostsCard
+                key={posts.id}
+                post={posts}
+                currentProfile={currentProfile}
+              />
+            ))
           ) : (
             <p>No posts available</p>
           )}

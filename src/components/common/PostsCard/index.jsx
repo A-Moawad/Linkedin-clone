@@ -19,6 +19,7 @@ import { BiSolidLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa6";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
 import EditModal from "../EditModal";
+
 function PostsCard({ post, id }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -30,6 +31,7 @@ function PostsCard({ post, id }) {
   const [allUsers, setAllUsers] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
 
+  const userEmail = localStorage.getItem("userEmail");
   const navigate = useNavigate();
 
   const commentsCount = comments.length;
@@ -51,7 +53,7 @@ function PostsCard({ post, id }) {
   useEffect(() => {
     getCurrentUser(setCurrentUser);
     getAllUsers(setAllUsers);
-  }, [allUsers]);
+  }, []);
 
   useEffect(() => {
     if (currentUser.id) {
@@ -72,6 +74,14 @@ function PostsCard({ post, id }) {
     return user ? user.imageLink : userIcon;
   }, [allUsers, post.userID]);
 
+  const handleCommentImage = useCallback(
+    (commentName) => {
+      const user = allUsers.find((user) => user.name === commentName);
+      return user ? user.imageLink : userIcon;
+    },
+    [allUsers]
+  );
+
   const handleCommentBtn = useCallback(() => {
     setIsComment((prev) => !prev);
   }, []);
@@ -86,7 +96,9 @@ function PostsCard({ post, id }) {
       post.postID,
       comment,
       getCurrentTimeStamp("LLL"),
-      currentUser?.name
+      currentUser?.name,
+      currentUser.email,
+      currentUser.id
     );
     setComment("");
   }, [comment, currentUser?.name, post.postID]);
@@ -112,9 +124,12 @@ function PostsCard({ post, id }) {
               >
                 {allUsers.find((user) => user.id === post.userID)?.name}
               </p>
+              <p className="headline">
+                {allUsers.filter((user) => user.id === post.userID)[0].headline}
+              </p>
               <p className="timestamp">{post.postTime}</p>
             </div>
-            {/* {currentUser.email === userEmail && (
+            {currentUser.id === post.userID && (
               <div className="edit-delete-btns">
                 <EditModal post={post} />
                 <MdDeleteOutline
@@ -122,7 +137,7 @@ function PostsCard({ post, id }) {
                   onClick={handleDeletePost}
                 />
               </div>
-            )} */}
+            )}
           </div>
           <div className="post-content">
             <p>
@@ -135,6 +150,7 @@ function PostsCard({ post, id }) {
                 </button>
               )}
             </p>
+            <img className="post-picture" src={post.postPicture} />
           </div>
           <div className="footer">
             <div className="status-bar">
@@ -173,10 +189,22 @@ function PostsCard({ post, id }) {
                 {comments.length > 0 &&
                   comments.map((comment, index) => (
                     <div className="comment-card-container" key={index}>
-                      <img src={userIcon} alt="user" />
+                      <img src={handleCommentImage(comment.name)} alt="user" />
                       <div className="comment-card">
                         <div className="comment-info">
-                          <p className="comment-name">{comment.name}</p>
+                          <p
+                            className="comment-name"
+                            onClick={() => {
+                              navigate("/profile", {
+                                state: {
+                                  id: comment?.userID,
+                                  email: comment?.userEmail,
+                                },
+                              });
+                            }}
+                          >
+                            {comment.name}
+                          </p>
                           <p className="timestamp">{comment.timeStamp}</p>
                         </div>
                         <p className="comment">{comment.comment}</p>

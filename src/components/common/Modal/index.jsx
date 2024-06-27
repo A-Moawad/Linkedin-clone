@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Modal } from "antd";
 import { IoMdPhotos } from "react-icons/io";
+import { useState } from "react";
 
 import "./index.scss";
+import { uploadPostPicture } from "../../../api/imageUploadAPI";
 
 const ModalComponent = ({
   modalOpen,
@@ -13,12 +15,14 @@ const ModalComponent = ({
   isEdit,
   updatePost,
   setPostPicture,
-  postPicture,
 }) => {
+  const [progress, setProgress] = useState(0);
+  console.log(progress);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setPostPicture(file);
+      uploadPostPicture(file, setPostPicture, setProgress);
     }
   };
 

@@ -15,13 +15,13 @@ import { getPostImage } from "../../../api/imageUploadAPI";
 function PostStatus({ currentUser }) {
   const [showModal, setShowModal] = useState(false);
   const [post, setPost] = useState("");
-  const [currentPost, setCurrentPost] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
   const [postImage, setPostImage] = useState("");
+  const [postPicture, setPostPicture] = useState("");
 
-  const userEmail = localStorage.getItem("userEmail"); // Ensure this is uncommented and used
-
+  const userEmail = localStorage.getItem("userEmail"); 
+  console.log(postPicture);
   
   const sendPost = async () => {
     const object = {
@@ -31,7 +31,7 @@ function PostStatus({ currentUser }) {
       userName: currentUser.name,
       postID: getUniqueID(),
       userID: currentUser.id,
-      // postImage: postImage,
+      postPicture: postPicture,
     };
     try {
       await postStatus(object);
@@ -78,8 +78,8 @@ function PostStatus({ currentUser }) {
         setPostImage={setPostImage}
         updatePost={updatePost}
         getPostImage={getPostImage}
-        currentPost={currentPost}
-        setCurrentPost={setCurrentPost}
+        postPicture={postPicture}
+        setPostPicture={setPostPicture}
       />
       <div className="all-posts">
         {allPosts?.map((post) => (
