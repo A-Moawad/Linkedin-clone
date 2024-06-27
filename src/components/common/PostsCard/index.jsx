@@ -19,6 +19,7 @@ import { BiSolidLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa6";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
 import EditModal from "../EditModal";
+import PostPicture from "../PostPictureModal";
 
 function PostsCard({ post, id }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -150,7 +151,8 @@ function PostsCard({ post, id }) {
                 </button>
               )}
             </p>
-            <img className="post-picture" src={post.postPicture} />
+            {/* <img className="post-picture" src={post.postPicture} /> */}
+            <PostPicture post={post}/>
           </div>
           <div className="footer">
             <div className="status-bar">
