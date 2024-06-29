@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
-import PropTypes from "prop-types";
 import "./index.scss";
 
 function PostPicture({ post }) {

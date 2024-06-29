@@ -125,7 +125,7 @@ function ProfileCard({ currentUser, onEdit }) {
               />
             ))
           ) : (
-            <p>No posts available</p>
+            <></>
           )}
         </div>
       </div>
