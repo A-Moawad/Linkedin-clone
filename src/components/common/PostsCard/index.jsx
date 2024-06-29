@@ -32,7 +32,6 @@ function PostsCard({ post, id }) {
   const [allUsers, setAllUsers] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
 
-  const userEmail = localStorage.getItem("userEmail");
   const navigate = useNavigate();
 
   const commentsCount = comments.length;

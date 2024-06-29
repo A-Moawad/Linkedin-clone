@@ -5,6 +5,7 @@ import "./index.scss";
 
 function PostPicture({ post }) {
   const [open, setOpen] = useState(false);
+  console.log(post);
 
   const showModal = () => {
     setOpen(true);

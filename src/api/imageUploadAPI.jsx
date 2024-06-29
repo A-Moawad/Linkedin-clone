@@ -51,7 +51,7 @@ export const getPostImage = (file, setPostImage, setProgress) => {
 };
 
 export const uploadPostPicture = (file, setPostPicture, setProgress) => {
-  const postRef = ref(storage, `postImages/${file.name}`);
+  const postRef = ref(storage, `postPictures/${file.name}`);
   const uploadTask = uploadBytesResumable(postRef, file);
 
   uploadTask.on(

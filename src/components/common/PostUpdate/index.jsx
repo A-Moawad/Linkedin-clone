@@ -20,9 +20,9 @@ function PostStatus({ currentUser }) {
   const [postImage, setPostImage] = useState("");
   const [postPicture, setPostPicture] = useState("");
 
-  const userEmail = localStorage.getItem("userEmail"); 
+  const userEmail = localStorage.getItem("userEmail");
   console.log(postPicture);
-  
+
   const sendPost = async () => {
     const object = {
       post: post,
@@ -37,7 +37,7 @@ function PostStatus({ currentUser }) {
       await postStatus(object);
       setShowModal(false);
       setPost("");
-      getStatus(setAllPosts); // Fetch posts again after posting
+      getStatus(setAllPosts);
     } catch (error) {
       console.error("Error posting status:", error);
     }
@@ -46,8 +46,6 @@ function PostStatus({ currentUser }) {
   useEffect(() => {
     getStatus(setAllPosts);
   }, []);
-
-  
 
   const updatePost = () => {
     setIsEdit(false);
