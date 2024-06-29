@@ -1,126 +1,115 @@
 .topbar {
+    position: relative;
     display: flex;
     align-items: center;
-    padding: 10px;
+    justify-content: space-between;
+    padding: 10px 20px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    position: relative;
-}
 
-.logo {
-    height: 40px;
-    width: 40px;
-    margin: 0 20px;
-    cursor: pointer;
-}
-
-@media (max-width: 767px) {
     .logo {
-        margin: 0 10px;
+        cursor: pointer;
     }
-}
 
-.icons {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    // .icon-container {
-    //   width: 100px;
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    // }
-    @media (min-width: 768px) {
-    .icon-container {
-            width: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    .icons {
+        display: flex;
+        align-items: center;
+
+        .icon-container {
+            margin: 0 10px;
+            cursor: pointer;
+            width: 70px;
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+
+            .icon {
+                font-size: 24px;
+
+            }
+        }
+
+        .user-container {
+            position: relative;
+
+            .icon.user {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+            }
+
+            .dropdown {
+                position: absolute;
+                top: 45px; // Adjust as needed
+                right: 0;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 1000; // Ensure this is set
+                width: 200px;
+                padding: 5px 10px;
+                list-style: none;
+
+                .dropdown-item {
+                    padding: 10px 0;
+                    cursor: pointer;
+                    border-radius: 50px;
+                    border: 5px blue solid;
+                    width: 100%;
+                    margin: 10px;
+                    text-align: center;
+                    margin: 5px auto;
+
+                    &:hover {
+                        background-color: #f0f0f0;
+                    }
+                }
+            }
         }
     }
 }
 
-.icon {
-    font-size: 1.5rem;
-    margin-right: 15px;
-    cursor: pointer;
-    transition: color 0.2s ease-in-out;
-    width: 35px;
-    height: 35px;
-
-    &:hover {
-        color: #0073b1;
-    }
-}
-
-.user-container {
-    margin-left: auto;
-    margin-right: 10px;
-    position: relative;
-}
-
-.dropdown {
+.filtered-users-container {
     position: absolute;
-    top: 45px; // Adjust as needed to align with your icon
-    right: 0;
+    top: 60px; // Adjust as needed
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    width: 200px;
+    width: 80%;
+    max-width: 600px;
     padding: 10px 20px;
-    border-radius: 15px;
-    border: 1px #aaa solid;
-}
 
-.dropdown-item {
-    list-style: none;
-    // padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    border: #0073b1 solid 4px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    text-align: center;
-    padding: 5px ;
+    .filtered-user {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
 
-    &:hover {
-        background-color: #f5f5f5;
-    }
-}
+        img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
 
-.filtered-users-container {
-  background-color: #fff;
-  position: absolute;
-  bottom: -180px;
-  left: 130px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  width: 80%;
-  .filtered-user {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10PX;
-    // z-index: 1000;
-    img {
-        width: 40px;
-        height: 40px;
+        .username {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .headline {
+            font-size: 14px;
+            color: #666;
+        }
     }
-    .usrename {
-        font-size: 16px;
-        font-weight: 600;
-        color: rgba(0, 0, 0, 0.9);
-        line-height: 24px;
-        cursor: pointer;
+
+    .error {
+        text-align: center;
+        color: red;
     }
-    .headline {
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 16px;
-      color: rgba(0, 0, 0, 0.6);
-    }
-  }
 }

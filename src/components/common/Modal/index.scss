@@ -16,8 +16,14 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
+    font-size: 32px;
 }
 .picture.icon:hover {
     color: rgba(0, 0, 0, 0.9);
+}
+
+.progress-bar {
+    margin-top: 20px;
+    text-align: center;
 }
 

@@ -84,11 +84,16 @@ function Topbar() {
 
   const handleLogoClick = () => {
     navigate("/home");
-  }
+  };
 
   return (
     <div className="topbar">
-      <img src={linkedInLogo} alt="LinkedIn Logo" className="logo" onClick={handleLogoClick}/>
+      <img
+        src={linkedInLogo}
+        alt="LinkedIn Logo"
+        className="logo"
+        onClick={handleLogoClick}
+      />
       {!isSearchClicked ? (
         <div className="icons">
           <div className="icon-container">

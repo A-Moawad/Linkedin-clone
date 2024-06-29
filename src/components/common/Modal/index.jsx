@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal } from "antd";
+import { Button, Modal, Progress } from "antd";
 import { IoMdPhotos } from "react-icons/io";
 import { useState } from "react";
 
@@ -65,6 +65,11 @@ const ModalComponent = ({
           onChange={handleFileChange}
           style={{ display: "none" }}
         />
+        {progress > 0 && (
+          <div className="progress-bar">
+            <Progress type="circle" percent={progress} />
+          </div>
+        )}
         <label htmlFor="upload-picture">
           <IoMdPhotos className="picture icon" />
         </label>
