@@ -1,8 +1,7 @@
-# React + Vite
+# https://linkedin-clone-vh8g.vercel.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1- register new user
+2- login
+3- home page contains all posts 
+4- connections page to see all users
+5- profile page to update users data
