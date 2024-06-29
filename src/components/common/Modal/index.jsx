@@ -3,6 +3,9 @@ import { Button, Modal } from "antd";
 import { IoMdPhotos } from "react-icons/io";
 import { useState } from "react";
 
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 import "./index.scss";
 import { uploadPostPicture } from "../../../api/imageUploadAPI";
 
@@ -17,6 +20,7 @@ const ModalComponent = ({
   setPostPicture,
 }) => {
   const [progress, setProgress] = useState(0);
+
   console.log(progress);
   const handleFileChange = (e) => {
     const file = e.target.files[0];

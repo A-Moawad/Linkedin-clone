@@ -24,7 +24,7 @@ function PostPicture({ post }) {
           alt="Post"
         />
       ) : (
-        <p>No picture available</p>
+        <></>
       )}
       <Modal open={open} footer={null} onCancel={handleCancel}>
         <img

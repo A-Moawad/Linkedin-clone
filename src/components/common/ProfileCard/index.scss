@@ -13,31 +13,48 @@
     align-items: center;
     background-color: #fff;
     position: relative;
-    max-width: 100vw;
+    max-width: 100%;
     min-width: 80%;
     margin: auto;
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px;
+    @media (max-width: 767px) {
+        flex-direction: column;
+        width: 100%;
+    
+    }
 
     .user-details {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        width: 100%;
+        @media (max-width: 767px) {
+            flex-direction: column;
+        }
 
         img {
             width: 15rem;
             height: 15rem;
             border-radius: 50%;
             margin-bottom: 8px;
+            cursor: pointer;
+            @media (max-width: 767px) {
+                width: 200px;
+                height: 200px;
+                margin: 10px auto;
+            }
         }
         
-        .profile-img {
-            cursor: pointer;
-        }
 
         .username {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 30px;
+            color: rgba(0, 0, 0, 0.9);
+            @media (max-width: 768px) {
+                font-size: 1.5rem;
+                
+            }
         }
 
         .headline {
@@ -48,14 +65,14 @@
         }
         .country-city {
             color: rgba(0, 0, 0, 0.6);
-            font-size: 14px;
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
         }
     }
     .right-info {
-      margin: 0 auto;
+    //   margin: 0 auto;
+    width: 100%;
     }
     .edit-btn {
       position: absolute;
@@ -75,15 +92,22 @@
     
         }
 
-    .company-college {
-        margin-right: 10rem;
+    .right-info {
+        text-align: left;
+        max-width: 100%;
+        font-size: 16px;
+        margin-top: 4px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.6);
+        // background-color: red;
+        
+            
+    }
+}
 
-        .college,
-        .company {
-            font-size: 16px;
-            margin-top: 4px;
-            font-weight: 600;
-        }
+@media (max-width: 768px) {
+    .profile-main {
+        padding: 5px;
     }
 }
 

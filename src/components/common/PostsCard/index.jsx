@@ -151,8 +151,7 @@ function PostsCard({ post, id }) {
                 </button>
               )}
             </p>
-            {/* <img className="post-picture" src={post.postPicture} /> */}
-            <PostPicture post={post}/>
+            <PostPicture post={post} />
           </div>
           <div className="footer">
             <div className="status-bar">
